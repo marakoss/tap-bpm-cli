@@ -5,47 +5,7 @@ import (
 	"bufio"
 	"os"
 	"time"
-	_ "math"
 )
-
-/*type Queue struct {
-    elements chan interface{}
-}
-
-func NewQueue(size int) *Queue {
-    return &Queue{
-        elements: make(chan interface{}, size),
-    }
-}
-
-func (queue *Queue) ReadAll() interface{} {
-	select {
-	case _ := <-queue.elements:
-		return queue.elements
-	default:
-		panic("Queue empty")
-	}
-	return nil
-}
-
-func (queue *Queue) Push(element interface{}) {
-    select {
-    case queue.elements <- element:
-    default:
-        panic("Queue full")
-    }
-}
-
-func (queue *Queue) Pop() interface{} {
-    select {
-    case e := <-queue.elements:
-        return e
-    default:
-        panic("Queue empty")
-    }
-    return nil
-}
-*/
 
 func getAverage(arr []int, size int) float32 {
    var i, sum int
@@ -59,9 +19,9 @@ func getAverage(arr []int, size int) float32 {
    return avg;
 }
 
-func printSlice(s []int) {
+/*func printSlice(s []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
-}
+}*/
 
 func getBPM(diff int) int {
 	bpm := 60000 / ( int(diff) / seconds )
@@ -73,8 +33,6 @@ const seconds int = 1000*1000
 func main() {
 
 	fmt.Print("Tap enter to calculate BPM (counter starts from the next tap)\n");
-	//fmt.Print("Current tap BPM: \n")
-	//fmt.Print("Average BPM: ")
 
 	scanner := bufio.NewScanner(os.Stdin)
 	var taps []int
