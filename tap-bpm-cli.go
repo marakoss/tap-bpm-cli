@@ -7,35 +7,36 @@ import (
 	"time"
 )
 
-func getAverage(arr []int, size int) float32 {
-   var i, sum int
+func getAverage(arr []float32, size int) float32 {
+   var i int
+   var sum float32
    var avg float32  
 
    for i = 0; i < size;i++ {
       sum += arr[i]
    }
 
-   avg = float32(sum / size)
+   avg = sum / float32(size)
    return avg;
 }
 
-/*func printSlice(s []int) {
+/*func printSlice(s []float32) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }*/
 
-func getBPM(diff int) int {
-	bpm := 60000 / ( int(diff) / seconds )
-	return int(bpm)
+func getBPM(diff float32) float32 {
+	bpm := 60000.0 / ( float32(diff) / seconds )
+	return float32(bpm)
 }
 
-const seconds int = 1000*1000 
+const seconds float32 = 1000.0*1000.0
 
 func main() {
 
 	fmt.Print("Tap enter to calculate BPM (counter starts from the next tap)\n");
 
 	scanner := bufio.NewScanner(os.Stdin)
-	var taps []int
+	var taps []float32
 	var i int
 
 	for {
@@ -59,13 +60,13 @@ func main() {
 			copy(taps, taps[1:])
 			taps = taps[:len(taps) - 1]
 		}
-		taps = append(taps, getBPM(int(diff)))
+		taps = append(taps, getBPM(float32(diff)))
 
 		//printSlice(taps)
-		//fmt.Printf("%#v", int(diff))
+		//fmt.Printf("%#v", float32(diff))
 
 		fmt.Printf("\033[2A\033[1K") // Remove previous two line
-		fmt.Printf("Current tap BPM: %v \n", getBPM(int(diff)) )
+		fmt.Printf("Current tap BPM: %v \n", getBPM(float32(diff)) )
 		fmt.Printf("Average BPM: %v ", getAverage(taps, len(taps)))
 	}    
 
